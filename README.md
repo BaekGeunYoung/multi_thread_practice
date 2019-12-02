@@ -85,6 +85,16 @@ controller 코드는 별 거 없다. 여러개의 file을 request parameter로 �
 ### 1. Performance
 request를 받아 작업을 처리하고 response를 돌려줄 때 까지 걸리는 시간을 비교해보았다.
 
+![sync_elapsed_time.png](https://github.com/BaekGeunYoung/multi_thread_practice/blob/master/images/sync_elapsed_time.PNG)
+
+(sync 방식의 elapsed time)
+
+![async_elapsed_time.png](https://github.com/BaekGeunYoung/multi_thread_practice/blob/master/images/async_elapsed_time.PNG)
+
+(async 방식의 elapsed time)
+
+당연한 얘기겠지만, async 방식이 더 빠른 시간 내에 작업을 처리하는 것을 확인할 수 있었다.
+
 ### 2. Process
 두 방식이 작업을 처리하는 과정이 어떻게 다른지 비교해보았다.
 #### async
@@ -115,3 +125,11 @@ multi thread async 방식은 작업이 들어오는 대로 빈 스레드에 작�
 
 ### 3. DB
 두 방식에 따라 DB에 데이터가 어떻게 저장되는지 비교해보았다. 
+
+![sync_data.png](https://github.com/BaekGeunYoung/multi_thread_practice/blob/master/images/sync_data.PNG)
+
+file을 하나씩 차례로 읽어 작업을 수행하므로 데이터에 저장되는 순서 또한 input으로 넣어준 파일의 순서와 일치한다.
+
+![async_data.png](https://github.com/BaekGeunYoung/multi_thread_practice/blob/master/images/async_data.PNG)
+
+4개의 file을 읽어 DB에 저장하는 작업이 동시에 수행되므로 여러 파일의 내용이 순서가 뒤섞여 저장된다.
